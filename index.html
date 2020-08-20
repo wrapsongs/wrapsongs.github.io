@@ -52,6 +52,12 @@ audio::-webkit-media-controls-volume-slider {
    font-size:15px;
   }
 }
+          input:focus {
+  outline: 2px solid #613480;outline-style: dashed;
+    }
+  input:active { 
+   outline: 2px solid #613480;outline-style: dashed;
+}
     </style>
     <script type="text/javascript">
         function amrt(){
@@ -71,7 +77,35 @@ audio::-webkit-media-controls-volume-slider {
      <br><br><br><br> 
      <div style="width: 100%;padding-top: 10px;padding-bottom: 10px;background-color: rgba(212,64,51,0.7);font-size:20px;"><span style="padding-left: 30px;color: #ffffff;">Guru Nanak</span></div>
      <br><br><br>
-     
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<center><div style="background-color: #ffffff;width: 80%;border-radius: 20px;padding-bottom: 5px;padding-top: 5px;"><i class="fa fa-search" style="color:grey;margin-right: 2%;"></i> <input style="width: 90%;" id="filter" type="text" placeholder="search.."></div></center>
+<script type="text/javascript">
+       $("#filter").keyup(function() {
+
+      // Retrieve the input field text and reset the count to zero
+      var filter = $(this).val(),
+        count = 0;
+
+      // Loop through the comment list
+      $('#results div').each(function() {
+
+
+        // If the list item does not contain the text phrase fade it out
+        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+          $(this).hide();  // MY CHANGE
+
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show(); // MY CHANGE
+          count++;
+        }
+
+      });
+
+    });
+</script>
+<div id="results">
+    <br>
      <div style="background-color: #613480;border-radius: 20px;height: 290px;width: 80%;margin-left: auto;margin-right: auto;box-shadow: 4px 4px 4px grey;">
       <center>
         <br>
