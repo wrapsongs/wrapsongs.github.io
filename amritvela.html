@@ -51,6 +51,12 @@ audio::-webkit-media-controls-volume-slider {
    font-size:15px;
   }
 }
+          input:focus {
+  outline: 2px solid #613480;outline-style: dashed;
+    }
+  input:active { 
+   outline: 2px solid #613480;outline-style: dashed;
+}
     </style>
     <script type="text/javascript">
         function gurunanak(){
@@ -70,7 +76,35 @@ audio::-webkit-media-controls-volume-slider {
      <br><br><br><br> 
      <div style="width: 100%;padding-top: 10px;padding-bottom: 10px;background-color: rgba(212,64,51,0.7);font-size:20px;"><span style="padding-left: 30px;color: #ffffff;">Amritvela</span></div>
      <br><br><br>
-     
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<center><div style="background-color: #ffffff;width: 80%;border-radius: 20px;padding-bottom: 5px;padding-top: 5px;"><i class="fa fa-search" style="color:grey;margin-right: 2%;"></i> <input style="width: 90%;" id="filter" type="text" placeholder="search.."></div></center>
+<script type="text/javascript">
+       $("#filter").keyup(function() {
+
+      // Retrieve the input field text and reset the count to zero
+      var filter = $(this).val(),
+        count = 0;
+
+      // Loop through the comment list
+      $('#results div').each(function() {
+
+
+        // If the list item does not contain the text phrase fade it out
+        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+          $(this).hide();  // MY CHANGE
+
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show(); // MY CHANGE
+          count++;
+        }
+
+      });
+
+    });
+</script>
+<div id="results">
+
      <div style="background-color: #613480;border-radius: 20px;height: 290px;width: 80%;margin-left: auto;margin-right: auto;box-shadow: 4px 4px 4px grey;">
       <center>
         <br>
@@ -79,7 +113,7 @@ audio::-webkit-media-controls-volume-slider {
 <source src="assets/ms/am1.mp3" type="audio/mp3"> </center> <center><br><a  target="_blank" href="assets/ms/am1.mp3" download="Shukar kara mere data" style="font-size:15px;"><span style="background-color:#A21CFF;padding-top: 10px;padding-bottom: 10px; padding-right: 20px;padding-left: 20px; border-radius: 20px;color: #ffffff;"><i class="fa fa-download" style="color:#ffffff;"></i><span>&nbsp;&nbsp;Download</span></span></a></center></div>
          <br><br>
          <center><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeaZmDe8F-JZvVao4kqi_4V_n7V2bmHRjgJM4o1EsNcJf96xw/viewform?embedded=true" width="80%" height="738" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-         </center>
+             </div>    </center>
          </main>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
