@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="fonts/font-awesome.min.css">
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body style=" -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;">
+<div style="position:fixed;
+width:100%;
+background: #DAA520;
+display:flex;
+height: 60px;
+left: 0px;
+top: 0px;
+z-index: 8;
+"></div>
+<center><div style="position: absolute;position:fixed;top:14px;z-index: 9; background-color: #ffffff;left:2.5%;border: 0.2px solid  #613480;width: 95%;border-radius:6px;padding-bottom: 5px;padding-top: 5px;"><i class="fa fa-search" style="color:grey;margin-right: 1.5%;"></i> <input style="width: 60%;outline:0;border:0;" id="filter" type="text" placeholder="search.."><img style="width: 80px;" src="logonew.png"></div></center>
+	<script type="text/javascript">
+  $.getJSON("https://spreadsheets.google.com/feeds/list/1ciplAIFx_iQ_sUCBVRLC-pPNI_bKOJp4oi34jvvWCWY/o4jzoyw/public/values?alt=json", function (data) {
+
+      var sheetData = data.feed.entry;
+      for (i = 0; i < sheetData.length; i++) {
+  var name = data.feed.entry[i].gsx$name.$t;
+   var price = data.feed.entry[i].gsx$price.$t;
+   var model = data.feed.entry[i].gsx$modelno.$t;
+   var size = data.feed.entry[i].gsx$size.$t;
+var im = data.feed.entry[i].gsx$imglink.$t;
+
+var userImage = " https://drive.google.com/thumbnail?id=" + im ;
+       document.getElementById('cards').innerHTML += ('<div onclick="fun('+i+')" style="width: 94%;height:140px;border: 1px solid #DAA520;border-radius: 7px;top: 60px;margin-bottom:8px;position: relative;vertical-align: middle;"><img src="'+userImage+'" style="width:72px;height:96px;vertical-align: middle;position: absolute;top: 0;bottom: 0;left: 20px;margin: auto;display: inline-block;"><div style="float: right;width: 50%;top: 45px;position: absolute;bottom: 0;left: 140px;"><p style="font-family: Rokkitt;font-style: normal;font-weight: bold;font-size: 14px;line-height: 0px;line-height: 1px;">'+name+'</p><p style="font-family: Rokkitt;font-style: normal;font-weight: bold;font-size: 13px;line-height: 0px;">Model No. : '+model+'</p><p style="font-family: Rokkitt;font-style: normal;font-weight: normal;font-size: 10px;line-height: 0px;">Size : '+size+'</p><p style="font-family: Rokkitt;font-style: normal;font-weight: normal;line-height: 0px;font-size: 10px;line-height: 0px;">Price : '+price+'</p></div></div>');
+       
+}   
+ });
+  function fun(i){
+ var value1=i;
+var queryString = "?" + value1;
+window.location.href = "fiberdetail.html" + queryString;
+}
+</script>
+ <center>
+	 <div class="form-group col-md-4" style="z-index: 6;top:66px;display:block;">
+		 <select id="inputState" class="form-control" style="border: 1px solid #DAA520;">
+			 <option selected>All</option>
+			 <option>5 x 7</option>
+			 <option>9 x 11</option>
+			 <option>10 x 12</option>
+			 <option>12 x 16</option>
+		 </select>
+	 </div>
+	 <div id="sear" style="z-index: 4;"> <span id="cards"></span ></div>
+   </center>
+<script type="text/javascript">
+       $("#filter").keyup(function() {
+
+      // Retrieve the input field text and reset the count to zero
+      var filter = $(this).val(),
+        count = 0;
+
+      // Loop through the comment list
+      $('#sear div').each(function() {
+
+
+        // If the list item does not contain the text phrase fade it out
+        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+          $(this).hide();  // MY CHANGE
+
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show(); // MY CHANGE
+          count++;
+        }
+
+      });
+
+    });
+</script>
+</body>
+</html>
