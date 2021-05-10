@@ -45,14 +45,9 @@
       // Create a Recaptcha verifier instance globally
       // Calls submitPhoneNumberAuth() when the captcha is verified
       window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
-        "recaptcha-container",
-        {
-          size: "normal",
-          callback: function(response) {
-            submitPhoneNumberAuth();
-          }
-        }
-      );
+        "recaptcha-container");
+          
+     
 
       // This function runs when the 'sign-in-button' is clicked
       // Takes the value from the 'phoneNumber' input and sends SMS to that phone number
